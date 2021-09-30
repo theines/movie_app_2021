@@ -1,14 +1,17 @@
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
+const HIDDEN_CLASSNAME = "hidden"
 
-//login 버튼 누르면 입력창이 없어지면 좋겠어
-//방법 1. className에 hidden을 추가해서 없에기(css에 hidden이라는 클래스 추가함)
+//form은 숨기고 h1은 내용물이 있을 때만 표시하고 싶다
 function onLoginSubmit(event){
     event.preventDefault();
-    const username = loginInput.value;
     loginForm.classList.add("hidden");
-    console.log(username);
+    const username = loginInput.value;
+    greeting.innerText = `Hello ${username}`;
+    greeting.classList.remove(HIDDEN_CLASSNAME);//클래스 리스트에서 히든이라는 클래스를 삭제해서 사용자에게 보여준다.
+
 }
 
 loginForm.addEventListener("submit", onLoginSubmit);
