@@ -1,22 +1,14 @@
-const loginInput = document.querySelector("#loginForm input");
-const loginButton = document.querySelector("#loginForm");
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
 
-const link = document.querySelector("a");
 
-//고치고 싶은 문제점 : form태그에서 input이 submit되면 전체 페이지가 새로고침이 되는 게 싫어
-//그래서 기본 동작을 실행하지 못하도록 아래에 첫 번째로 들어오는 매개변수를 만져볼거야
+//login 버튼 누르면 입력창이 없어지면 좋겠어
+//방법 1. className에 hidden을 추가해서 없에기(css에 hidden이라는 클래스 추가함)
 function onLoginSubmit(event){
-    event.preventDefault(); //기본동작을 실행하지 못하게 하는 코드
-    console.log(loginInput.value);
-    //아래에서 onLoginSubmit을 호출하면 그냥 호출되는 것이 아니라 onLoginSubmit(information)이렇게
-    //첫 번째 매개변수로 정보가 들어온다.
+    event.preventDefault();
+    const username = loginInput.value;
+    loginForm.classList.add("hidden");
+    console.log(username);
 }
 
-function handleLinkClick(){
-    alert("clicked");//alert가 먼저 실행되고 그 다음에 기본동작이 실행될 것이다. 
-}
-
-loginButton.addEventListener("submit", onLoginSubmit);
-link.addEventListener("click", handleLinkClick);
-//가장 중요한 개념은 addEventListener()안에서 handleLinkClick()이렇게 pressplay하지 않는다는거야
-//브라우저가 하는거. 그냥하는거 아니라 이벤트의 정보까지 담아서!
+loginForm.addEventListener("submit", onLoginSubmit);
