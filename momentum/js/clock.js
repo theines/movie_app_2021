@@ -1,10 +1,15 @@
 const clock = document.querySelector("h2#clock");
 
+//초가 1 아니라 01 이렇게 표기되길 원한다 -> padStart()
+
 function getClock(){
     const date = new Date();
-    clock.innerText = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+    clock.innerText = `${hours}:${minutes}:${seconds}`;
 }
-getClock(); //함수를 바로 실행시켜줘야지 안그럼 1초 기다렸다가 실행됨.
+getClock();
 setInterval(getClock, 1000);
-//setInterval(getClock, 1000);//3초 간격으로 계속 실행
-//setTimeout(sayHello,3000);//3초뒤에 한 번만 실행
+
+
