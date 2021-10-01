@@ -4,19 +4,20 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-const toDos = []; //paint될 때마다 해당 배열에 추가할 것이다.
+let toDos = []; //paint될 때마다 해당 배열에 추가할 것이다.
+//const toDos = []; 이렇게 submit될 때마다 배열이 초기화되기 때문에 localStorage에는 옛투두가 없어지고 새투두만 남게된다.
+// 그래서 업데이트 가능하게 const를 let으로 바꾼다.
 
 function saveToDos(){
     //todos라는 키값에 toDos배열의 값을 넣는 모습.
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); //로컬스토리지는 배열을 저장을 못해서 이렇게 stringify를 해줘야함. 
-    
 }
-
 
 function deleteToDo(event){
     //console.log(event.target.parentElement); //이렇게 하면 어떤 버튼이 선택되었는지 알 수 있다.(부모요소 li 나옴)
     const li = event.target.parentElement;
     li.remove();
+    
 }
 
 function paintToDo(newTodo){
@@ -48,6 +49,10 @@ toDoForm.addEventListener("submit", handleToDoSubmit);
 const savedToDos = localStorage.getItem(TODOS_KEY);
 if(savedToDos !== null){ //savedToDos가 존재하면
     const parsedToDos = JSON.parse(savedToDos);
-    parsedToDos.forEach((item) => console.log("this is the turn of ", item));//배열의 길이만큼 돌면서 화살표 함수를 실행시키는 모습.
+    
+    toDos = parsedToDos; //이렇게 옛투두를 투두배열에 업데이트 해주면 초기화문제해결.
+
+    //parsedToDos.forEach((item) => console.log("this is the turn of ", item));//배열의 길이만큼 돌면서 화살표 함수를 실행시키는 모습.
     //매개변수(item)은 (event)처럼 자바스크립트가 제공하는걸로써 we can know which item of array is executing. 
+    parsedToDos.forEach(paintToDo);
 }
