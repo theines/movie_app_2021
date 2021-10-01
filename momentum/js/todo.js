@@ -13,17 +13,21 @@ function saveToDos(){
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); //로컬스토리지는 배열을 저장을 못해서 이렇게 stringify를 해줘야함. 
 }
 
+
+
 function deleteToDo(event){
     //console.log(event.target.parentElement); //이렇게 하면 어떤 버튼이 선택되었는지 알 수 있다.(부모요소 li 나옴)
     const li = event.target.parentElement;
-    li.remove();
-    
+    li.remove();//화면에 그린걸 지우기
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));//toDos array를 새로운 섹시한 array로 바꿔줌.
+    saveToDos();//새로운 sexy array를 로컬스토리지에 다시 저장.
 }
 
 function paintToDo(newTodo){
     const li = document.createElement("li");
+    li.id = newTodo.id; //HTML에 newToDoObj.id를 생성
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodo.text;//object라서 이제 .text로 접근해야함.
     const button = document.createElement("button");
     button.innerText = "❌";
     button.addEventListener("click", deleteToDo);
@@ -37,9 +41,14 @@ const TODOLIST = "todolist";
 function handleToDoSubmit(event){
     event.preventDefault(); //새로고침 방지
     const newTodo = toDoInput.value; //비우기전에 변수에 값 저장
-    toDoInput.value = ""; //값 비우기    
-    toDos.push(newTodo); //toDos 배열에 추가
-    paintToDo(newTodo); //값 그리는 곳으로 보내기
+    toDoInput.value = ""; //값 비우기  
+    //그냥 string아니라 object를 푸쉬하고싶다  
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now(), //random한 숫자를 부여함
+    }
+    toDos.push(newTodoObj); //toDos 배열에 추가
+    paintToDo(newTodoObj); //값 그리는 곳으로 보내기
     saveToDos();
 }
 
@@ -55,4 +64,12 @@ if(savedToDos !== null){ //savedToDos가 존재하면
     //parsedToDos.forEach((item) => console.log("this is the turn of ", item));//배열의 길이만큼 돌면서 화살표 함수를 실행시키는 모습.
     //매개변수(item)은 (event)처럼 자바스크립트가 제공하는걸로써 we can know which item of array is executing. 
     parsedToDos.forEach(paintToDo);
+}
+
+//[1,2,3,4].filter(sexyFilter) 이렇게 할건데 섹시필터가 false이면 그 item은 새 array에 포함되지 않는다!
+//filter함수는 매개변수의 function이 false이면 해당 item을 array에 포함시키지 않는다.
+function sexyFilter(item){//sexyFilter must return true if you want to keep the old array.!!
+    //아래 if 조건문에 exclude하고싶은 아이템만 적으면 그것을 제외하고 배열이 만들어질것이다.
+    //그리고 이 filter function은 새로운 array를 return할 것이다.
+    
 }
