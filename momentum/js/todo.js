@@ -2,6 +2,7 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
+//saving the magical string that you should not misspell to const as uppercase.
 const TODOS_KEY = "todos";
 
 let toDos = []; //paint될 때마다 해당 배열에 추가할 것이다.
