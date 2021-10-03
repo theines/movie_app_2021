@@ -41,10 +41,12 @@ const quotes = [
     }
 
 ]
-
+//grab first. querySelector니까 #붙이기
 const quote = document.querySelector("#quote span:first-child");
 const author = document.querySelector("#quote span:last-child");
 
+//reason for choosing floor rather than round is just because
+//i do not need the last number
 const todaysQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
 quote.innerText = todaysQuote.quote;
