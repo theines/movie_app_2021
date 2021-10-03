@@ -71,5 +71,6 @@ if(savedToDos !== null){ //savedToDos가 존재하면
 function sexyFilter(item){//sexyFilter must return true if you want to keep the old array.!!
     //아래 if 조건문에 exclude하고싶은 아이템만 적으면 그것을 제외하고 배열이 만들어질것이다.
     //그리고 이 filter function은 새로운 array를 return할 것이다.
-    
+    //아래와 같이 화살표 함수를 활용할 수  있다.
+    //toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id)); 
 }
