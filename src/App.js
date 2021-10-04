@@ -7,5 +7,8 @@ export default App;
 
 function sexyFunction(){
   console.log("test");
+  console.log("test");
+  console.log("test");
+  console.log("test");
 }
 sexyFunction();
