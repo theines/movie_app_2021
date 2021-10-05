@@ -1,26 +1,58 @@
-//import Potato from './Potato';//.은 같은 위치라는 뜻
+// #2 2 Dynamic Component Generation
+// 어떻게 object의 list를 가져오는지 배워보자.
 
-// 처음엔 빈 HTML 파일이 로드되고 react가 자바스크립트를 만들어서 html로 밀어넣어준다.=>이 개념이 virtual DOM
-// conmponent는 HTML을 반환하는 함수다.
-// react는 component를 사용해서 HTML처럼 작성하려는 경우에 필요해.
-// javascript와 HTML사이의 조합을 JSX라고 부른다.
-// 두번째로 중요한 개념은 컴포넌트에 정보를 보낼 수 있다는 점이다.
+// map은 array의 각 item에 function을 적용하고 array를 반환한다.
 
-function Food({ fav }){
-  // 인자로(props)받은다음 props.fav 이렇게 하는 대신에 props도 걷어내고 바로 쓸 수 있게
-  // function Food({fav}){ 이렇게 할 수 있다 (es6) props object 안에는 fav가 있으니까
-  return <h1>I like {fav}</h1>;
+const girlILike = [
+  {
+    id: 1,
+    name: "꽃게",
+    image:
+      "https://pbs.twimg.com/media/EFCwGJTUEAE3OB_.jpg"
+  },
+  {
+    id: 2,
+    name: "단무지",
+    image:
+      "https://pbs.twimg.com/media/FAz41SBVIAEwwOf?format=jpg&name=small"
+  },
+  {
+    id: 3,
+    name: "브이",
+    image:
+      "https://pbs.twimg.com/media/FAKE3Y3WYAQdDOR?format=jpg&name=900x900"
+  },
+  {
+    id: 4,
+    name: "뽀",
+    image:
+      "https://pbs.twimg.com/media/FAPPwjCVkAQAs5p?format=jpg&name=900x900"
+  },
+]
+
+//component
+function Girl({ name, picture }){
+  return <div>
+    <h2>하! {name}걸!</h2>
+    <img src={picture} alt={name} />
+  </div>;
 }
+
+/* 화살표함수를 안쓰면 이렇게 된당
+function renderFood(girl){
+  return <Girl name={girl.name} picture={girl.image} />
+} */
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
-      {/*아래는 food component의 fav라는 이름의 property, 그리고 김치라는 value를 넣음*/}
-      <Food fav="kimchi" /> 
-      <Food fav="ramen" /> 
-      <Food fav="samkyupsal" /> 
-      <Food fav="jook " /> 
+      {/* jsx안에서 {}이렇게 하면 javascript이다.
+      girlILike.map은 girlILike이라는 object형식의 배열을 돌면서 화살표 다음의 행동을 실행한다.
+      <Girl name={item.name}은 Girl라는 컴포넌트에 name이라는 이름의 속성에다가 배열을 돌면서 object.name을 넣어준다
+      */}
+      {girlILike.map(girl => ( 
+        <Girl key={girl.id} name={girl.name} picture={girl.image} />
+        ))}
       </div>
   );
 }
