@@ -1,15 +1,7 @@
-/* #5 0 Deploying to Github pages
-package.json의 맨 마지막 줄에 
-  "homepage": "https://theines.github.io/movie_app_2021" 넣었고
-스크립트에
-  "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "deploy": "gh-pages -d build",
-      "predeploy": "npm run build"
-    },
-마지막 두 줄 추가했다. 기능설명은 predeploy가 build하라고 하면 build script가 폴더를 만들어주고 그렇게 predeploy가 끝나면 deploy script가 폴더를 가지고 deploy한다.
-*/
+// #5 1 Are we done?
+// last thing to know is that we don't need the class component anymore
+// to have "state".
+// it's because "react hook"(new idea)
 
 import React from "react";
 import axios from "axios";
