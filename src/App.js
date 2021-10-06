@@ -1,5 +1,4 @@
-// #3 0 class components and state 
-// funtion component를 class component로 변경 할 것이다.
+// #3 1 All you need to know about state 
 
 import React from "react";
 
@@ -11,10 +10,17 @@ class App extends React.Component{
     count: 0
   };
   add = () => {
-    console.log("add");
+    // this.state.count = 1; 이렇게 하면 동작하지 않는데 
+    // 왜냐면 react가 render funtion을 refresh하지 않아서
+    // this.setState({ count: this.state.count + 1 });
+    // setState는 새로운 State를 취해야한다. state는 object이다.
+    // setState를 하면 react refresh not only the state but also the render function!!
+    // 여기서 react에게 감탄할 점은 모든걸 다시 칠하지만 virtualDom을 사용해서 변한 부분만 refresh..
+    // this.state.count를 current가 대신 해줄 수 있다. fucking cool.
+    this.setState(current => ({ count: current.count + 1 }));
   };
   minus = () => {
-    console.log("minus");
+    this.setState(current => ({ count: current.count - 1 }));
   };
   // class component는 render method를 가지고있고 이것은 App component안에 있다(react component에서 확장했기때문에)
   // react는 자동적으로 너의 class component의 render method를 실행한다.
