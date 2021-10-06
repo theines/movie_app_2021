@@ -1,60 +1,33 @@
-// #2 2 Dynamic Component Generation
-// 어떻게 object의 list를 가져오는지 배워보자.
+// #3 0 class components and state 
+// funtion component를 class component로 변경 할 것이다.
 
-// map은 array의 각 item에 function을 적용하고 array를 반환한다.
+import React from "react";
 
-const girlILike = [
-  {
-    id: 1,
-    name: "꽃게",
-    image:
-      "https://pbs.twimg.com/media/EFCwGJTUEAE3OB_.jpg"
-  },
-  {
-    id: 2,
-    name: "단무지",
-    image:
-      "https://pbs.twimg.com/media/FAz41SBVIAEwwOf?format=jpg&name=small"
-  },
-  {
-    id: 3,
-    name: "브이",
-    image:
-      "https://pbs.twimg.com/media/FAKE3Y3WYAQdDOR?format=jpg&name=900x900"
-  },
-  {
-    id: 4,
-    name: "뽀",
-    image:
-      "https://pbs.twimg.com/media/FAPPwjCVkAQAs5p?format=jpg&name=900x900"
-  },
-]
-
-//component
-function Girl({ name, picture }){
-  return <div>
-    <h2>하! {name}걸!</h2>
-    <img src={picture} alt={name} />
-  </div>;
-}
-
-/* 화살표함수를 안쓰면 이렇게 된당
-function renderFood(girl){
-  return <Girl name={girl.name} picture={girl.image} />
-} */
-
-function App() {
-  return (
-    <div className="App">
-      {/* jsx안에서 {}이렇게 하면 javascript이다.
-      girlILike.map은 girlILike이라는 object형식의 배열을 돌면서 화살표 다음의 행동을 실행한다.
-      <Girl name={item.name}은 Girl라는 컴포넌트에 name이라는 이름의 속성에다가 배열을 돌면서 object.name을 넣어준다
-      */}
-      {girlILike.map(girl => ( 
-        <Girl key={girl.id} name={girl.name} picture={girl.image} />
-        ))}
-      </div>
-  );
+// react class component에서 가져온다 extends 뒤에가 더 큰 개념
+class App extends React.Component{
+  // state는 object이고 component의 data를 넣을 공간이 있고 이 데이터는 변한다. 변한다?
+  // 이전에는 prop을 써서 하드코딩을 한거고 나는 동적으로 변하는 코드가 필요한데 state가 그것을 도와줄 것이다.
+  state = {
+    count: 0
+  };
+  add = () => {
+    console.log("add");
+  };
+  minus = () => {
+    console.log("minus");
+  };
+  // class component는 render method를 가지고있고 이것은 App component안에 있다(react component에서 확장했기때문에)
+  // react는 자동적으로 너의 class component의 render method를 실행한다.
+  render(){
+    return (
+      <div>
+        <h1>The number is {this.state.count}</h1> 
+        <button onClick={this.add}>Add</button>{/* reactMagic~~내장함수감사쓰 */}
+        <button onClick={this.minus}>Minus</button>
+      </div> 
+    );
+  }
+ 
 }
 
 export default App;
