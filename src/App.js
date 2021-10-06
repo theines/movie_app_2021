@@ -1,31 +1,30 @@
-// #4 3 Adding Genres
-// 할 일: props에 장르array를 포함시키는 것.
+// #4 5 cutting the summary
 
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
 import "./App.css";
-  
-class App extends React.Component{
+
+class App extends React.Component {
   state = {
     isLoading: true,
-    movies: [] 
+    movies: []
   };
-  getMovies = async() => {
+  getMovies = async () => {
     const {
       data: {
-        data : {movies}
+        data: { movies }
       }
     } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
-    this.setState({ movies, isLoading:false })//({movies:movies})원래 이런형식이고 one from state, the other from axios
+    this.setState({ movies, isLoading: false })//({movies:movies})원래 이런형식이고 one from state, the other from axios
 
-  } 
+  }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getMovies();
   }
 
-  render(){
+  render() {
     const { isLoading, movies } = this.state; //this.state.isLoading 매번 하기 귀찮아서
     return (
       /* 여기 원래 <section class="container"> 이랬는데 그냥 class하면 
@@ -34,27 +33,27 @@ class App extends React.Component{
       <section className="container">
         {isLoading ? (
           <div className="loader">
-            <span className="loader_text">Loading...</span>
-          </div> 
-          ) : (
-            <div className="movies">
-              {movies.map(movie => (
-                <Movie
-                  key={movie.id} 
-                  id={movie.id}
-                  year={movie.year}
-                  title={movie.title}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                  genres={movie.genres}
-                />
-              ))}
-            </div>
-          )}
+            <span className="loader__text">Loading...</span>
+          </div>
+        ) : (
+          <div className="movies">
+            {movies.map(movie => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+              />
+            ))}
+          </div>
+        )}
       </section>
     );
-  } 
-  
+  }
+
 }
 
 export default App;
