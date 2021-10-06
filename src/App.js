@@ -1,4 +1,5 @@
-// #4 2 Styling the Movies
+// #4 3 Adding Genres
+// 할 일: props에 장르array를 포함시키는 것.
 
 import React from "react";
 import axios from "axios";
@@ -27,13 +28,16 @@ class App extends React.Component{
   render(){
     const { isLoading, movies } = this.state; //this.state.isLoading 매번 하기 귀찮아서
     return (
-      <section class="container">
+      /* 여기 원래 <section class="container"> 이랬는데 그냥 class하면 
+        javascript안에서는 component class에 의해 리액트가 혼란스러워져서 className으로 바꿈
+      */
+      <section className="container">
         {isLoading ? (
-          <div class="loader">
-            <span class="loader_text">Loading...</span>
+          <div className="loader">
+            <span className="loader_text">Loading...</span>
           </div> 
           ) : (
-            <div class="movies">
+            <div className="movies">
               {movies.map(movie => (
                 <Movie
                   key={movie.id} 
@@ -41,7 +45,8 @@ class App extends React.Component{
                   year={movie.year}
                   title={movie.title}
                   summary={movie.summary}
-                  poster={movie.medium_cover_image} 
+                  poster={movie.medium_cover_image}
+                  genres={movie.genres}
                 />
               ))}
             </div>
