@@ -1,8 +1,9 @@
-// #4 1 Rendering the Movies
+// #4 2 Styling the Movies
 
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
+import "./App.css";
   
 class App extends React.Component{
   state = {
@@ -26,20 +27,26 @@ class App extends React.Component{
   render(){
     const { isLoading, movies } = this.state; //this.state.isLoading 매번 하기 귀찮아서
     return (
-      <div>
-        {isLoading 
-          ? "Loading..." 
-          : movies.map(movie => (
-              <Movie
-                key={movie.id} 
-                id={movie.id}
-                year={movie.year}
-                title={movie.title}
-                summary={movie.summary}
-                poster={movie.medium_cover_image} 
-              />
-          ))}
-      </div>
+      <section class="container">
+        {isLoading ? (
+          <div class="loader">
+            <span class="loader_text">Loading...</span>
+          </div> 
+          ) : (
+            <div class="movies">
+              {movies.map(movie => (
+                <Movie
+                  key={movie.id} 
+                  id={movie.id}
+                  year={movie.year}
+                  title={movie.title}
+                  summary={movie.summary}
+                  poster={movie.medium_cover_image} 
+                />
+              ))}
+            </div>
+          )}
+      </section>
     );
   } 
   
