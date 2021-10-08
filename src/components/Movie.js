@@ -36,7 +36,7 @@ function Movie({ id, year, title, summary, poster, genres }) {
     );
 }
 
-//우리가 얻어올 props를 찾기 시작하자
+// propType은 protection이야
 Movie.propTypes = {
     id: PropTypes.number.isRequired,
     year: PropTypes.number.isRequired,
