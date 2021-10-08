@@ -1,9 +1,4 @@
-// #6 3 Sharing Props Btw Routes
-
-// 모든 Route는 prop을 기본적으로 보낸다.
-// 그래서 네비게이션에서 about을 누르면 props를 화면으로 보낼거다.
-// 그리고 영화를 클릭하면 movie detail페이지로 갈꺼다.(데이터를 보낼것임) 
-
+// #6 4 Redirecting
 
 import { HashRouter, Route } from "react-router-dom";
 import Home from "./routes/Home";
@@ -18,7 +13,7 @@ function App() {
       <Navigation />
       <Route path="/" exact={true} component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/movie-detail" component={Detail} />
+      <Route path="/movie/:id" component={Detail} />
     </HashRouter>
 
   );

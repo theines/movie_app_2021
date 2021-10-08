@@ -5,10 +5,10 @@ import "./Movie.css";
 
 
 //movies component는 state를 필요로 하지 않기 때문에 클래스컴포넌트로 할 필요가 없다.
-function Movie({ year, title, summary, poster, genres }) {
+function Movie({ id, year, title, summary, poster, genres }) {
     return (
         <Link to={{
-            pathname:"/movie-detail",
+            pathname:`/movie/${id}`,
             state: {
                 year,
                 title,
