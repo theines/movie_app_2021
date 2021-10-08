@@ -6,6 +6,7 @@ import { HashRouter, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Navigation from "./components/Navigation";
 import About from "./routes/About";
+import "./App.css";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Route path="/" exact={true} component={Home} />
       <Route path="/about" component={About} />
     </HashRouter>
-    
+
   );
 }
 
