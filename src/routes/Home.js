@@ -4,7 +4,9 @@ import Movie from "../components/Movie";
 import "./Home.css";
 
 class Home extends React.Component {
-  state = {
+  state = { // state는 동적 데이터 또는 생겨나고 사라지는 다이나믹한 것을 변경하고 싶을 때 쓰고,
+           // props is used for the data that is fixed and not changing all the time.
+           // state is object and there is space for data.
     isLoading: true,
     movies: []
   };
